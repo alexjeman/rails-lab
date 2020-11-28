@@ -15,14 +15,17 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<body>
+<body class="d-flex flex-column">
 <%= render 'layouts/header' %>
-<div class="container">
-<% flash.each do |_, msg| %>
-  <%= msg %>
-<% end %>
-<%= yield %>
+<div class="container" id="page-content">
+  <br>
+  <% flash.each do |_, msg| %>
+    <%= msg %>
+  <% end %>
+  <br>
+  <%= yield %>
 </div>
+<%= render 'layouts/footer' %>
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
