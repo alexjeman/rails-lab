@@ -29,3 +29,7 @@ body {
 #sticky-footer {
     flex-shrink: none;
 }
+
+#home-container {
+    margin-top: 25px;
+}
