@@ -1,0 +1,29 @@
+<%= form_with(model: @user, local: true) do |form| %>
+
+  <%= render 'shared/errors', obj: @user %>
+
+  <div class="form-group row">
+    <%= form.label :username, class: "col-2 col-form-label" %>
+    <div class="col-10">
+      <%= form.text_field :username, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :email, class: "col-2 col-form-label" %>
+    <div class="col-10">
+      <%= form.email_field :email, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :password, class: "col-2 col-form-label" %>
+    <div class="col-10">
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Sign Up", class: "btn btn-primary" %>
+  </div>
+<% end %>
