@@ -19,9 +19,7 @@
 <%= render 'layouts/header' %>
 <div class="container" id="page-content">
   <br>
-  <% flash.each do |_, msg| %>
-    <%= msg %>
-  <% end %>
+<%= render 'layouts/messages' %>
   <br>
   <%= yield %>
 </div>
