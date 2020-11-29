@@ -1,4 +1,10 @@
 <div class="container">
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @users %>
+    </div>
+    <%= will_paginate @users, :container => false %>
+  </div>
   <% @users.each do |user| %>
     <div class="row">
       <div class="col-12">
@@ -18,4 +24,10 @@
     </div>
     <br>
   <% end %>
+  <div class="flickr_pagination mb-4">
+    <div class="page_info">
+      <%= page_entries_info @users %>
+    </div>
+    <%= will_paginate @users, :container => false %>
+  </div>
 </div>
