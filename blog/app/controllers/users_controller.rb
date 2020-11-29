@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @articles = @user.articles
@@ -17,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(params.require(:user).permit(:username, :email, :password))
       flash[:notice] = 'Account updated!'
-      render 'edit', notice: 'Account information was successfully updated.'
+      redirect @user, notice: 'Account information was successfully updated.'
     else
       render 'edit'
     end

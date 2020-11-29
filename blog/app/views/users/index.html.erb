@@ -1,0 +1,21 @@
+<div class="container">
+  <% @users.each do |user| %>
+    <div class="row">
+      <div class="col-12">
+        <div class="card text-center shadow-sm rounded">
+          <div class="card-header">
+            <i><%= link_to user.username, user_path(user.id) %></i>
+          </div>
+          <div class="card-body">
+            <%= gravatar_for(user, size: 150) %>
+            <p class="card-text"><%= pluralize(user.articles.count, 'article') %></p>
+          </div>
+          <div class="card-footer text-muted">
+            <%= user.email %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  <% end %>
+</div>

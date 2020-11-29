@@ -1,14 +1,15 @@
 <h1 class="text-center mt-4"><%= @user.username %></h1>
-<%= gravatar_for @user %>
+
 <div class="container">
   <div class="row">
     <div class="col-12">
       <div class="card text-center shadow-sm rounded">
         <div class="card-header">
-          <i>by <%= @user.username %></i>
+
         </div>
         <div class="card-body">
-          <div class="card-text text-left"><%= simple_format(@user.email) %></div>
+          <%= gravatar_for @user %>
+          <div class="card-text"><%= simple_format(@user.email) %></div>
           <%= link_to 'Update', edit_user_path(@user), class: "btn btn-primary" %>
           <%= link_to 'Delete', users_path(@user.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-primary" %>
         </div>
