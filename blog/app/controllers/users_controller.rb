@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:username, :email, :password))
     if @user.save
+      session[:user_id] = @user.id
       redirect_to home_index_path, notice: 'User was successfully created.'
     else
       render 'new'
