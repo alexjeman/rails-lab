@@ -9,7 +9,7 @@ class User < ApplicationRecord
                     length: { maximum: 50 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 
-  has_many :articles
+  has_many :articles, dependent: :destroy
 
   has_secure_password
 end

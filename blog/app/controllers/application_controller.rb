@@ -17,14 +17,14 @@ class ApplicationController < ActionController::Base
   end
 
   def require_article_author
-    unless current_user == @article.user
+    unless current_user == @article.user || current_user.admin?
       flash[:alert] = 'You can only edit or delete your own articles.'
       redirect_to @article
     end
   end
 
   def require_same_user
-    if current_user != @user
+    unless current_user == @user
       flash[:alert] = 'You can only edit your own account.'
       redirect_to @user
     end
