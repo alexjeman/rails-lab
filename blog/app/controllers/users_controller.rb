@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[show edit update]
+  before_action :require_user, only: %i[edit update]
+  before_action :require_same_user, only: %i[edit update]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 2)
   end
 
   def show
-    @user = User.find(params[:id])
     @articles = @user.articles
   end
 
@@ -14,14 +16,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(params.require(:user).permit(:username, :email, :password))
       flash[:notice] = 'Account updated!'
-      redirect @user, notice: 'Account information was successfully updated.'
+      redirect_to @user, notice: 'Account information was successfully updated.'
     else
       render 'edit'
     end
@@ -35,5 +35,11 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

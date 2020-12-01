@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: %i[show edit update destroy]
+  before_action :require_user, except: %i[show index]
+  before_action :require_article_author, only: %i[edit update destroy]
 
   # GET /articles
   # GET /articles.json
@@ -25,6 +27,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    @article.user_id = current_user.id
 
     respond_to do |format|
       if @article.save
@@ -69,6 +72,6 @@ class ArticlesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def article_params
-    params.require(:article).permit(:title, :description, :user_id)
+    params.require(:article).permit(:title, :description)
   end
 end
